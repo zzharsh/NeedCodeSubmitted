@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        // set<int> S;
+        int n = nums.size();
+        int ans = 0;
+        vector<int> DP(n+1,0);
+        // DP[n] = 10004;
+        DP[n-1] = 1;
+        for(int i = n-2; i >= 0; --i)
+        {
+            for(int j = i+1; j < n+1; ++j)
+            {
+                if(nums[i] < nums[j])
+                {
+                    DP[i] = max(DP[i], 1 + DP[j]);
+                    ans = max(ans, DP[i]);
+                }
+                cout<<nums[i]<<" "<<nums[j]<<" "<<DP[i]<<"\n";
+            }
+        }
+        // ans = DP[0];
+        return ans;
+    }
+};
